@@ -1,0 +1,54 @@
+@mixin cell-position($row, $col) {
+  &.row#{$row} {
+    top: $row * $cell-height;
+  }
+  &.col#{$col} {
+    left: $col * $cell-width;
+  }
+}
+
+.tetrominoes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .tetromino {
+    position: absolute;
+    width: $cell-width;
+    height: $cell-height;
+    border: $tetromino-border;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    @for $r from 0 through $rows {
+      @for $c from 0 through $cols {
+        @include cell-position($r, $c);
+      }
+    }
+
+    &.i {
+      background: $i-colour;
+    }
+    &.j {
+      background: $j-colour;
+    }
+    &.l {
+      background: $l-colour;
+    }
+    &.o {
+      background: $o-colour;
+    }
+    &.t {
+      background: $t-colour;
+    }
+    &.s {
+      background: $s-colour;
+    }
+    &.z {
+      background: $z-colour;
+    }
+  }
+}

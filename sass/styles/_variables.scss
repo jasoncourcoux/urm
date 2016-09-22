@@ -1,0 +1,30 @@
+/*
+ *    Grid Variables
+ */
+$cell-width: 25px;
+$cell-height: $cell-width;
+
+$rows: 22;
+$cols: 10;
+
+$grid-border: 1px solid lightgrey;
+
+/*
+ *    Tetromino Variables
+ */
+$i-colour: cyan;
+$j-colour: blue;
+$l-colour: orange;
+$t-colour: purple;
+$s-colour: green;
+$z-colour: red;
+$o-colour: yellow;
+
+$tetromino-border: 1px solid #999;
+
+/*
+ *    Pause Screen Variables
+ */
+$paused-screen-background: grey;
+$paused-screen-opacity: 0.7;
+$paused-screen-font-size: 3em;

@@ -1,0 +1,48 @@
+.grid {
+  position: relative;
+  width: $cell-width * $cols;
+  height: $cell-height * $rows;
+
+  .grid-row {
+    display: flex;
+    border-top: $grid-border;
+    width: 100%;
+    height: $cell-height;
+
+    &:last-child {
+      border-bottom: $grid-border;
+    }
+
+    .grid-cell {
+      border-left: $grid-border;
+      width: $cell-width;
+      height: $cell-height;
+
+      &.type {
+        width: $cell-width;
+        height: $cell-height;
+        border: $tetromino-border;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        @import "styles/tetrominoTypes";
+      }
+
+      &:last-child {
+        border-right: $grid-border;
+      }
+    }
+  }
+
+  @import "styles/pause";
+  @import "styles/tetromino";
+
+  .frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $cell-height * 2;
+    background: white;
+  }
+}
