@@ -12,11 +12,10 @@
 (defn can-move-to?
   [state new-coordinates]
   (every? true? (map (fn [[col row]]
-                       (cond (>= col (:grid-width state)) false
-                             (< col 0) false
-                             (>= row (count (:grid state))) false
-                             (empty? (get-in state [:grid row col])) true
-                             :else false)) new-coordinates)))
+                       (if-let [available (get-in state [:grid row col])]
+                         (empty? available)
+                         false))
+                     new-coordinates)))
 
 (defn can-move?
   [state axis transform]
