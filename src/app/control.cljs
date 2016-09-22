@@ -1,5 +1,8 @@
 (ns app.control
-  (:require [app.tetrominoes :refer [rotate-tetromino tetrominoes]]))
+  (:require [app.tetrominoes :refer [rotate-tetromino tetrominoes]]
+            [cljs.core.async :refer [chan close! <! >! put! pipeline]])
+  (:require-macros
+    [cljs.core.async.macros :refer [go]]))
 
 (defn tetromino->coords
   [t]
@@ -62,21 +65,29 @@
     :running (assoc state :state :paused)
     :paused (assoc state :state :running)))
 
+(defn filter-keycodes
+  [c]
+  (let [out-chan (chan)]
+    (pipeline 1 out-chan (filter #(some #{(.-keyCode %)} [32 37 38 39 40])) c)
+    out-chan))
+
+(defn event-handler
+  [chan game-state]
+  (let [events-chan (filter-keycodes chan)]
+    (go
+      (while true
+        (let [evt (<! events-chan)
+              code (.-keyCode evt)]
+          (.preventDefault evt) 
+          (cond
+            (= code 37) (swap! game-state move :x dec)
+            (= code 39) (swap! game-state move :x inc)
+            (= code 38) (swap! game-state rotate)
+            (= code 40) (swap! game-state move-down)
+            (= code 32) (swap! game-state toggle-pause)))))))
+
 (defn bind-key-handlers
-  [game-state]
-  (.addEventListener js/window
-                     "keydown"
-                     (fn [e]
-                       (let [code (.-keyCode e)
-                             LEFT 37 RIGHT 39 UP 38 DOWN 40 SPACE 32
-                             allowed-codes [LEFT RIGHT UP DOWN SPACE]]
-                         (if (some #{code} allowed-codes)
-                           (do (.preventDefault e)
-                               (if (= :running (:state @game-state))
-                                 (cond
-                                   (= code LEFT) (swap! game-state move :x dec)
-                                   (= code RIGHT) (swap! game-state move :x inc)
-                                   (= code UP) (swap! game-state rotate)
-                                   (= code DOWN) (swap! game-state move-down)
-                                   (= code SPACE) (swap! game-state toggle-pause))
-                                 (if (= code SPACE) (swap! game-state toggle-pause)))))))))
+  [c]
+  (.addEventListener
+    js/window "keydown" (fn [evt]
+                          (go (>! c evt)))))

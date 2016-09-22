@@ -1,6 +1,6 @@
 (ns app.core
   (:require [app.tetrominoes :refer [tetrominoes rotate-tetromino]]
-            [app.control :refer [bind-key-handlers move-down]]
+            [app.control :refer [bind-key-handlers move-down event-handler]]
             [cljs.core.async :refer [chan close! <!]]
             [app.component :refer [render]]
             [reagent.core :as r])
@@ -89,7 +89,8 @@
               (swap! game-state assoc :state :game-over)))))))
 
 (defn init-game []
-  (let [[current a b c & r] (tetrominoes)
+  (let [event-chan (chan)
+        [current a b c & r] (tetrominoes)
         gw (:grid-width @game-state)
         gh (:grid-height @game-state)]
     (do
@@ -99,7 +100,8 @@
              :current-tetromino current
              :next-tetrominoes [a b c]
              :grid (create-empty-grid gw gh))
-      (bind-key-handlers game-state))))
+      (event-handler event-chan game-state)
+      (bind-key-handlers event-chan))))
 
 (defn main []
   (init-game)
