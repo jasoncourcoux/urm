@@ -8,8 +8,8 @@
                   [org.clojure/clojure "1.9.0-alpha12"]
                   [org.clojure/clojurescript "1.9.229"]
                   [org.clojure/core.async "0.2.391"]
-                  [binaryage/devtools      "0.8.2" :scope "test"]
-                  [binaryage/dirac         "0.6.6" :scope "test"]
+                  [binaryage/devtools "0.8.2" :scope "test"]
+                  [binaryage/dirac "0.6.6" :scope "test"]
                   [powerlaces/boot-cljs-devtools "0.1.1" :scope "test"]
                   [reagent "0.6.0-rc"]
                   [com.cemerick/piggieback "0.2.1" :scope "test"]
@@ -54,5 +54,12 @@
                (test-cljs)
                (exit!)))
 
+(deftask serve-static []
+         (comp
+           (serve :dir "static/")
+           (sass :output-style :compressed)
+           (watch)))
+
 (deftask build []
-         (cljs :optimizations :advanced))
+         (comp (cljs :optimizations :advanced)
+               (target :dir #{"static/"})))
