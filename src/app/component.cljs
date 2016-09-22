@@ -47,7 +47,8 @@
         [:div.frame]]
        [:div.sidepanel
         [:div.score "Score: " (:score state)]
-        [:div.level "Level: " (:level state)]]])))
+        [:div.level "Level: " (int (Math/floor (/ (:lines-cleared state) 10)))]
+        [:div.level "Lines Cleared: " (:lines-cleared state)]]])))
 
 (defn render [game-state]
   (r/render-component [(grid game-state)]

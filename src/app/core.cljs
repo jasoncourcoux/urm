@@ -10,12 +10,17 @@
 (enable-console-print!)
 
 (defonce game-state (r/atom
-                      {:state       :not-started
-                       :game-speed  1000
-                       :grid-height 22
-                       :grid-width  10
-                       :score       0
-                       :level       0}))
+                      {:state         :not-started
+                       :grid-height   22
+                       :grid-width    10
+                       :score         0
+                       :lines-cleared 0}))
+
+(defn level []
+  (int (Math/floor (/ (:lines-cleared @game-state) 10))))
+
+(defn game-speed []
+  (* 1000 (Math/pow 0.9 (level))))
 
 (defn create-empty-grid
   [width height]
@@ -54,14 +59,16 @@
 (defn update-score []
   (let [state @game-state
         n (count (completed-lines state))
-        l (:level state)
+        l (level)
         score-to-add (case n
                        1 (* 40 (inc l))
                        2 (* 100 (inc l))
                        3 (* 300 (inc l))
                        4 (* 1200 (inc l))
                        0 0)]
-    (swap! game-state update :score (partial + score-to-add))))
+    (do
+      (swap! game-state update :score (partial + score-to-add))
+      (swap! game-state update :lines-cleared (partial + n)))))
 
 (defn timeout [ms]
   (let [c (chan)]
@@ -72,7 +79,7 @@
   []
   (go
     (while true
-      (<! (timeout (:game-speed @game-state)))
+      (<! (timeout (game-speed)))
       (if (= (:state @game-state) :running)
         (do (swap! game-state move-down)
             (update-score)
