@@ -2,12 +2,6 @@
   (:require [reagent.core :as r]
             [app.tetrominoes :refer [tetromino]]))
 
-(defn empty-grid
-  [width height]
-  (vec (for [rows (range height)]
-         (vec (for [cols (range width)]
-                [])))))
-
 (defn grid-cell [cell]
   (if (empty? cell) ^{:key (str "cell" (rand-int 999999999))} [:div.grid-cell]
                     ^{:key (str "block" (rand-int 999999999))} [(keyword (str "div.grid-cell.type." (name (first cell))))]))
