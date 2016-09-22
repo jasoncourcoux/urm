@@ -23,6 +23,12 @@
                       (vec (for [cols (range width)]
                              []))))))
 
+(defn game-over?
+  [state]
+  (let [empty-rows (filter (fn [row]
+                             (every? empty? row)) (:grid state))]
+    (empty? empty-rows)))
+
 (defn drop-rows
   [state]
   (let [not-emp (filter (fn [row]
@@ -71,7 +77,9 @@
         (do (swap! game-state move-down)
             (update-score)
             (swap! game-state remove-completed-lines)
-            (swap! game-state drop-rows))))))
+            (swap! game-state drop-rows)
+            (if (game-over? @game-state)
+              (swap! game-state assoc :state :game-over)))))))
 
 (defn init-game []
   (let [[current a b c & r] (tetrominoes)

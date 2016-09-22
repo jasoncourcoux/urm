@@ -38,9 +38,12 @@
           ^{:key (str "row" (rand-int 999999999))} (grid-row row))
         [:div.tetrominoes
          (render-current-tetromino state)]
-        (if (:paused (:state state))
+        (if (= :paused (:state state))
           [:div.paused-overlay
            [:div.paused-text "Paused"]])
+        (if (= :game-over (:state state))
+          [:div.paused-overlay
+           [:div.paused-text "Game over"]])
         [:div.frame]]
        [:div.sidepanel
         [:div.score "Score: " (:score state)]
