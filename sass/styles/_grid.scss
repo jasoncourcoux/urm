@@ -2,16 +2,13 @@
   position: relative;
   width: $cell-width * $cols;
   height: $cell-height * $rows;
+  border-bottom: $grid-border;
 
   .grid-row {
     display: flex;
     border-top: $grid-border;
     width: 100%;
     height: $cell-height;
-
-    &:last-child {
-      border-bottom: $grid-border;
-    }
 
     .grid-cell {
       border-left: $grid-border;

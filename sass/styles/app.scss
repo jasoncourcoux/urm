@@ -2,3 +2,8 @@
 @import "base";
 @import "grid";
 @import "sidepanel";
+
+.game-container {
+  display: flex;
+  margin: 25px;
+}

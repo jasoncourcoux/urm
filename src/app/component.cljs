@@ -14,24 +14,24 @@
 (defn tetromino-cell [x y type]
   ^{:key (str "tetrominocellx" x "y" y)} [(keyword (str "div.tetromino.row" y ".col" x "." (name type)))])
 
-(defn render-current-tetromino
-  [state]
+(defn render-tetromino
+  [tetromino]
   (concat (map-indexed (fn [ri row]
                          (map-indexed (fn [ci col]
                                         (if (= col 1)
-                                          (tetromino-cell (+ ci (get-in state [:current-tetromino :x]))
-                                                          (+ ri (get-in state [:current-tetromino :y]))
-                                                          (get-in state [:current-tetromino :type])))) row)) (get-in state [:current-tetromino :coordinates]))))
+                                          (tetromino-cell (+ ci (:x tetromino))
+                                                          (+ ri (:y tetromino))
+                                                          (:type tetromino)))) row)) (:coordinates tetromino))))
 
 (defn grid [game-state]
   (fn []
     (let [state @game-state]
-      [:div
+      [:div.game-container
        [:div.grid
         (for [row (:grid state)]
           ^{:key (str "row" (rand-int 999999999))} (grid-row row))
         [:div.tetrominoes
-         (render-current-tetromino state)]
+         (render-tetromino (:current-tetromino state))]
         (if (= :paused (:state state))
           [:div.paused-overlay
            [:div.paused-text "Paused"]])
@@ -40,9 +40,14 @@
            [:div.paused-text "Game over"]])
         [:div.frame]]
        [:div.sidepanel
-        [:div.score "Score: " (:score state)]
-        [:div.level "Level: " (int (Math/floor (/ (:lines-cleared state) 10)))]
-        [:div.level "Lines Cleared: " (:lines-cleared state)]]])))
+        [:div.next-tetrominoes
+         (for [t (:next-tetrominoes state)]
+           [:div.tetromino-container
+            (render-tetromino (assoc t :x 0))])]
+        [:div.status
+         [:div.score "Score: " (:score state)]
+         [:div.level "Level: " (int (Math/floor (/ (:lines-cleared state) 10)))]
+         [:div.lines "Lines Cleared: " (:lines-cleared state)]]]])))
 
 (defn render [game-state]
   (r/render-component [(grid game-state)]

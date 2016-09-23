@@ -58,7 +58,7 @@
                              (-> state
                                  merge-tetromino-into-grid
                                  (assoc :current-tetromino (first (:next-tetrominoes state))
-                                        :next-tetrominoes (conj (rest (:next-tetrominoes state)) (first (tetrominoes)))))))
+                                        :next-tetrominoes (concat (rest (:next-tetrominoes state)) (take 1 (tetrominoes)))))))
 (defn toggle-pause
   [state]
   (case (:state state)
