@@ -1,4 +1,3 @@
-# cljs-tetris
-Tetris game created with ClojureScript to help learn the language
+# Universal Register Machine
 
-[Play Here](https://jasoncourcoux.com/experiments/cljs-tetris/index.html)
+Playing around with ideas for a front end.
