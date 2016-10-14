@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module cursive.leiningen.project.LeiningenProjectsManager.displayName="boot-project:0.0.0-SNAPSHOT" cursive.leiningen.project.LeiningenProjectsManager.isLeinModule="true" type="JAVA_MODULE" version="4">
+<module cursive.leiningen.project.LeiningenProjectsManager.displayName="urm:0.0.0-SNAPSHOT" cursive.leiningen.project.LeiningenProjectsManager.isLeinModule="true" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/html" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/dev-resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/sass" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/dev-resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
@@ -19,22 +19,37 @@
     <orderEntry type="library" name="Leiningen: adzerk/boot-cljs:1.7.228-1" level="project" />
     <orderEntry type="library" name="Leiningen: adzerk/boot-reload:0.4.12" level="project" />
     <orderEntry type="library" name="Leiningen: args4j:2.0.26" level="project" />
+    <orderEntry type="library" name="Leiningen: binaryage/devtools:0.8.2" level="project" />
+    <orderEntry type="library" name="Leiningen: binaryage/dirac:0.6.6" level="project" />
     <orderEntry type="library" name="Leiningen: boot/core:2.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: boot/pod:2.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: clansi:1.0.0" level="project" />
+    <orderEntry type="library" name="Leiningen: clj-logging-config:1.9.12" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom-server:15.1.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom:15.1.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react:15.1.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.cemerick/piggieback:0.2.1" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-annotations:2.3.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.3.3" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-databind:2.3.3" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.findbugs/jsr305:1.3.9" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.gson/gson:2.2.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.guava/guava:19.0" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.javascript/closure-compiler-externs:v20160315" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.javascript/closure-compiler-unshaded:v20160315" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.protobuf/protobuf-java:2.5.0" level="project" />
+    <orderEntry type="library" name="Leiningen: commons-io:2.4" level="project" />
     <orderEntry type="library" name="Leiningen: crisptrutski/boot-cljs-test:0.2.2-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Leiningen: deraen/boot-sass:0.2.1" level="project" />
-    <orderEntry type="library" name="Leiningen: http-kit:2.1.18" level="project" />
+    <orderEntry type="library" name="Leiningen: deraen/boot-sass:0.2.1-patched" level="project" />
+    <orderEntry type="library" name="Leiningen: deraen/sass4clj:0.2.1-patched" level="project" />
+    <orderEntry type="library" name="Leiningen: environ:1.1.0" level="project" />
+    <orderEntry type="library" name="Leiningen: funcool/cuerdas:1.0.1" level="project" />
+    <orderEntry type="library" name="Leiningen: http-kit:2.2.0" level="project" />
+    <orderEntry type="library" name="Leiningen: io.bit3/jsass:3.3.1" level="project" />
+    <orderEntry type="library" name="Leiningen: log4j:1.2.16" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.commons/commons-compress:1.9" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.commons/commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.9.0-alpha12" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojurescript:1.9.229" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.async:0.2.391" level="project" />
@@ -46,14 +61,22 @@
     <orderEntry type="library" name="Leiningen: org.clojure/google-closure-library:0.0-20160609-f42b4a24" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer.jvm:0.6.10" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer:0.6.9" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/tools.cli:0.3.5" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/tools.logging:0.3.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.12" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.reader:1.0.0-beta3" level="project" />
     <orderEntry type="library" name="Leiningen: org.mozilla/rhino:1.7R5" level="project" />
     <orderEntry type="library" name="Leiningen: org.ow2.asm/asm-all:4.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.projectodd.shimdandy/shimdandy-impl:1.2.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.7" level="project" />
     <orderEntry type="library" name="Leiningen: org.tcrawley/dynapath:0.2.3" level="project" />
+    <orderEntry type="library" name="Leiningen: org.webjars.npm/validate.js:0.8.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.webjars/webjars-locator-core:0.30" level="project" />
+    <orderEntry type="library" name="Leiningen: org.webjars/webjars-locator:0.29" level="project" />
     <orderEntry type="library" name="Leiningen: pandeiro/boot-http:0.7.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Leiningen: powerlaces/boot-cljs-devtools:0.1.1" level="project" />
     <orderEntry type="library" name="Leiningen: reagent:0.6.0-rc" level="project" />
+    <orderEntry type="library" name="Leiningen: version-clj:0.1.2" level="project" />
     <orderEntry type="library" name="Leiningen: weasel:0.7.0" level="project" />
   </component>
 </module>

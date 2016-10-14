@@ -1,9 +1,251 @@
-@import "variables";
-@import "base";
-@import "grid";
-@import "sidepanel";
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-.game-container {
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+
+$registers-height: 100px;
+
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#graph-controls {
+  position: absolute;
+  top: $registers-height;
+  left: 0px;
+  right: 0px;
+  height: 55px;
+  border-right: 2px solid #ddd;
+  border-top: 2px solid #ddd;
+
+  .controls {
+    display: flex;
+
+    .label {
+      padding: 5px;
+      margin: 10px;
+      font-weight: bold;
+      margin-right: 0;
+    }
+
+    .button {
+      border: 2px solid;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px;
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      cursor: pointer;
+      &.selected {
+        background: #ddd;
+      }
+      
+      &:hover {
+        background: #eee;
+      }
+    }
+
+    .node-types {
+      margin-right: 0;
+      margin-left: 0;
+      display: flex;
+
+      .button {
+        width: 35px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    .edge-types {
+      margin-right: 0;
+      margin-left: auto;
+      display: flex;
+
+      .button {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+#graph-container {
+  position: absolute;
+  top: $registers-height + 55px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-right: 2px solid #ddd;
+}
+
+#registers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0px;
+  height: $registers-height;
+  border-right: 2px solid #ddd;
+}
+
+.registers {
+  width: 100%;
   display: flex;
-  margin: 25px;
+  justify-content: space-around;
+  font-weight: bold;
+  align-items: center;
+
+  .register {
+    border: 2px solid red;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #fbe3e3;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &.selected {
+      background: #e89999;
+    }
+  }
+
+  .add-register {
+    border: 2px solid red;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #fbe3e3;
+    margin-left: auto;
+    margin-right: 5px;
+  }
+}
+
+#machine-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+
+  .controls {
+    display: flex;
+    .label {
+      padding: 5px;
+      margin: 10px;
+      font-weight: bold;
+      margin-right: 0;
+    }
+
+    .button {
+      border: 2px solid;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px;
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      cursor: pointer;
+      &.selected {
+        background: #ddd;
+      }
+
+      &:hover {
+        background: #eee;
+      }
+    }
+  }
+
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.5;
+  }
+
+  .panel {
+    position: absolute;
+    background: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      margin: 10px;
+    }
+
+    div {
+      margin: 10px;
+      padding: 5px;
+    }
+  }
+}
+
+.vis-manipulation {
+  position: absolute;
+  top: 0;
+  display: flex !important;
+  width: 100%;
+
+  .vis-button {
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+
+    &.vis-add {
+      display: none;
+    }
+
+    &.vis-connect {
+      display: none;
+    }
+
+    &.vis-none {
+      border: none;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
 }
